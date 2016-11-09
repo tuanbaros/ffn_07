@@ -369,3 +369,7 @@ table.dataTable thead .sorting:after {
     display: block;
     height: 20px;
 }
+
+.colum {
+    text-align: center;
+}
