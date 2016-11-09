@@ -16,4 +16,6 @@ elixir.config.sourcemaps = false;
 elixir(function(mix) {
     mix.sass('app.scss');
     mix.scripts(bowerFiles('*.js'), 'public/js/app.js', '/');
+    mix.copy('bower_components/metisMenu/dist/metisMenu.min.js', 'public/metisMenu/dist/metisMenu.min.js');
+    mix.copy('bower_components/font-awesome', 'public/font-awesome');
 });
