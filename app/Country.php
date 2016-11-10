@@ -6,10 +6,21 @@ use App\News;
 use App\League;
 use App\Player;
 use App\Team;
-use Illuminate\Database\Eloquent\Model;
+use App\BaseModel;
 
-class Country extends Model
+use Illuminate\Database\Eloquent\Model;
+use Validator;
+
+class Country extends BaseModel
 {
+    protected $table = 'countries';
+    
+    protected $rules = [
+        'name' => 'required|unique:countries,name',
+        'code' => 'required|numeric'
+    ];
+
+
     public function news()
     {
     	return $this->hasMany(News::class);
