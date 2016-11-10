@@ -16,7 +16,7 @@
             @else
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <span class ="glyphicon glyphicon-user"></span>{{ Auth::user()->name }}<b class="caret"></b>
+                    <span class ="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}<b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
@@ -27,6 +27,7 @@
                     </li>
                 </ul>
             </li>
+            @endif
         </ul>
     </div>
     @include('layouts.admin.menu')
