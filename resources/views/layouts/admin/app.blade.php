@@ -16,15 +16,14 @@
     <script src="{{ asset('metisMenu/dist/metisMenu.min.js') }}"></script>
     {{ Html::style('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}
     {{ Html::style('/bower_components/font-awesome/css/font-awesome.min.css') }}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 </head>
 <body>
     <div id="wrapper">
         @include('layouts.admin.header')
         @yield('content')
     </div>
-
     {{ Html::script('/bower_components/jquery/dist/jquery.min.js') }}
     {{ Html::script('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}
-
 </body>
 </html>
