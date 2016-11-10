@@ -12,13 +12,10 @@
                         'method' => 'post',
                         'class' => 'form-horizontal'
                     ]) !!}
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             {!! Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 control-label']) !!}
-
                             <div class="col-md-6">
                                 {!! Form::email('email', null, ['class' => 'form-control']) !!}
-
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -29,10 +26,8 @@
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             {!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
-
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
-
+                                {!! Form::password('password', ['class' => 'form-control']) !!}
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -46,7 +41,6 @@
                                 <div class="checkbox">
                                     <label>
                                         {!! Form::checkbox('remember', null) !!}@lang('login.remember-me')
-                                        
                                     </label>
                                 </div>
                             </div>
@@ -55,11 +49,10 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 {!! Form::submit('Login', ['class' => 'btn btn-primary']) !!}
-                            
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">{{ @lang('login.forgot-your-password')</a>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}">@lang('login.forgot-your-password')</a>
                             </div>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

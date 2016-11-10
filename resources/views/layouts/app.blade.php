@@ -12,8 +12,10 @@
 
     {{ Html::style('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}
     {{ Html::style('/bower_components/font-awesome/css/font-awesome.min.css') }}
+    {{ Html::style('/bower_components/sweetalert/dist/sweetalert.css') }}
 
     <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/show-profile.css') }}">
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -29,9 +31,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    @lang('login.title')
-                </a>
+                <a class="navbar-brand" href="{{ url('/') }}">@lang('login.title')</a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -49,11 +49,32 @@
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                                {{ Auth::user()->name }}<span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>@lang('login.logout')</a></li>
+                                <li>
+                                    <div class="profile">
+                                        <div class="avatar">
+                                            @if (empty(Auth::user()->avatar))
+                                                {{ Html::image('/images/avatar.png', 'Image Not Found', ['class' => 'img-circle']) }}
+                                            @else
+                                                {{ Html::image(Auth::user()->avatar, '', ['class' => 'img-circle']) }}
+                                            @endif
+                                            <h3>{{ Auth::user()->name }}</h3>
+                                            <h4>Email: {{ Auth::user()->email }}</h4>
+                                            <h4>State: Online</h4>
+                                            <div class="logout">
+                                                <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>
+                                                    @lang('login.logout')
+                                                </a>
+                                            </div>
+                                            <div class="edit">
+                                                <a href=""><i class="fa fa-btn fa-edit"></i>@lang('profile.edit')</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </li>
                     @endif
@@ -67,5 +88,6 @@
     <!-- JavaScripts -->
     {{ Html::script('/bower_components/jquery/dist/jquery.min.js') }}
     {{ Html::script('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}
+    {{ Html::script('/bower_components/sweetalert/dist/sweetalert.min.js') }}
 </body>
 </html>

@@ -19,17 +19,16 @@ Route::get('/news', function() {
     return view('user.home');
 });
 
-Route::get('/admin', function() {
-    return view('admin.index');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+    Route::get('/', function() {
+        return view('admin.index');
+    });
+    
+    Route::resource('categories', 'CategoriesController');
+
+    Route::resource('country', 'CountryController', ['only' => ['index', 'create', 'store']]);
 });
 
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-
-    Route::resource('categories', 'CategoriesController');
-
-    Route::resource('country', 'CountryController', ['only' => ['index', 'create', 'store']]);
-});
