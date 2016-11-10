@@ -9,9 +9,9 @@ class BaseModel extends Model
 {
     protected $valid;
 
-    public function validate($data)
+    public function validate($data, $ruleName)
     {
-        $this->valid = Validator::make($data, $this->rules);
+        $this->valid = Validator::make($data, $this->rules($ruleName));
         if ($this->valid->fails()) {
             return false;
         }
