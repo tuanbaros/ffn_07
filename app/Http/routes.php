@@ -25,7 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     });
     
     Route::resource('categories', 'CategoriesController');
-
+    Route::resource('news', 'NewsController');
     Route::resource('country', 'CountryController', ['only' => ['index', 'create', 'store']]);
 });
 
