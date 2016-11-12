@@ -401,3 +401,7 @@ table.dataTable thead .sorting:after {
 .colum {
     text-align: center;
 }
+
+#form {
+    padding-bottom: 120px;
+}
