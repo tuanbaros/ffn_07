@@ -1,6 +1,4 @@
 var elixir = require('laravel-elixir');
-var bowerFiles = require('main-bower-files');
-require('es6-promise').polyfill();
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -11,12 +9,14 @@ require('es6-promise').polyfill();
  | file for our application, as well as publishing vendor resources.
  |
  */
-elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
-    mix.sass('app.scss');
-    mix.scripts(bowerFiles('*.js'), 'public/js/app.js', '/');
-    mix.copy('bower_components/metisMenu/dist/metisMenu.min.js', 'public/metisMenu/dist/metisMenu.min.js');
-    mix.copy('bower_components/font-awesome', 'public/font-awesome');
-    mix.copy('node_modules/ckeditor', 'public/ckeditor');
+    mix.copy('bower_components/bootstrap', 'public/bower_components/bootstrap');
+    mix.copy('bower_components/metisMenu/dist/metisMenu.min.js', 'public/bower_components/metisMenu/dist/metisMenu.min.js');
+    mix.copy('bower_components/font-awesome', 'public/bower_components/font-awesome');
+    mix.copy('bower_components/ckeditor', 'public/bower_components/ckeditor');
+    mix.copy('bower_components/bootstrap-fileinput', 'public/bower_components/bootstrap-fileinput');
+    mix.copy('bower_components/firebase', 'public/bower_components/firebase');
+    mix.copy('bower_components/sweetalert', 'public/bower_components/sweetalert');
+    mix.copy('bower_components/jquery', 'public/bower_components/jquery');
 });

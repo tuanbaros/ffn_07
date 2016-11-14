@@ -29,7 +29,7 @@ class NewsController extends Controller
     {
         $news = new News();
         $data = $request->only('title', 'description', 'content', 'cate_id', 'country_id');
-        if ($news->validate($data)) {
+        if ($news->validate($data, 'storeRule')) {
             News::create($data);
             Session::flash('flash_message', Lang::get('news.add_news_success'));
             return redirect()->back()->with('flash_level', 'success');
@@ -45,6 +45,7 @@ class NewsController extends Controller
         return view('admin.news.edit')->with(['news' => $news, 
             'categories' => $categories, 'countries' => $countries]);
     }
+
     public function update(Request $request, $id)
     {
         $news = News::find($id);
@@ -54,7 +55,7 @@ class NewsController extends Controller
                 'flash_level' => 'danger']);
         }
         $data = $request->only('title', 'description', 'content', 'cate_id', 'country_id');
-        if ($news->validate($data)) {
+        if ($news->validate($data, 'updateRule')) {
             $news->update($data);
             return redirect()->back()->with([
                 'flash_message' => Lang::get('news.edit_news_success'),

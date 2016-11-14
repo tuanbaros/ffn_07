@@ -26,7 +26,7 @@ class CategoriesController extends Controller
     {
         $category = new Category();
         $data = $request->all();
-        if ($category->validate($data)) {
+        if ($category->validate($data, 'storeRule')) {
             $category->name = ucwords($request->name);
             $category->save();
             Session::flash('flash_message', Lang::get('categories.add_category_success'));
@@ -48,7 +48,7 @@ class CategoriesController extends Controller
             return redirect()->back()->with('flash_message', Lang::get('categories.not_search_category'));
         }
         $data = $request->all();
-        if ($category->validate($data)) {
+        if ($category->validate($data, 'updateRule')) {
             $category->name = ucwords($request->name);
             $category->update();
             return redirect()->back()->with('flash_message', Lang::get('categories.edit_category_success'));
@@ -65,5 +65,4 @@ class CategoriesController extends Controller
         $category->delete();
         return redirect()->back()->with('flash_message', Lang::get('categories.delete_category_success'));
     }
-
 }

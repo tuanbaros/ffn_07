@@ -10,9 +10,18 @@ use App\BaseModel;
 class Category extends BaseModel
 {
     protected $table = "categories";
-    protected $rules = [
-        'name' => 'required|max:50|unique:categories',
-    ];
+
+    public function rules($ruleName)
+    {
+        if ($ruleName == 'updateRule') {
+            $nameRules = 'required|max:50|unique:categories,name,' . $this->id;
+        } else {
+            $nameRules = 'required|max:50|unique:categories,name';
+        }
+        return [
+            'name' => $nameRules
+        ];
+    }
 
     public function news()
     {

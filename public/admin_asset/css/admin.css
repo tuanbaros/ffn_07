@@ -2,6 +2,28 @@ body {
     background-color: #f8f8f8;
 }
 
+.kv-avatar-errors {
+    width:800px;
+    display:none;
+}
+
+.div-kv-avatar {
+    width:200px;
+}
+
+.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+
+.kv-avatar .file-input {
+    display: table-cell;
+    max-width: 220px;
+}
+
 #wrapper {
     width: 100%;
 }
@@ -20,6 +42,12 @@ body {
         border-left: 1px solid #e7e7e7;
     }
 } 
+
+#search-team {
+    position: absolute;
+    top: 25%;
+    right: 25px;
+}
 
 .navbar-top-links {
     margin-right: 0;
