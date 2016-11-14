@@ -20,7 +20,7 @@
     {{ Html::style('bower_components/font-awesome/css/font-awesome.css') }}
     {{ Html::style('bower_components/font-awesome/css/font-awesome.css') }}
     {{ Html::script('/bower_components/firebase/firebase.js') }}
-    {{ Html::script('/bower_components/sweetalert/dist/sweetalert.min.js') }}
+    {{ Html::script('/bower_components/sweetalert/dist/sweetalert2.min.js') }}
     {{ Html::style('/css/login.css') }}
     {{ Html::script('admin_asset/js/admin.js') }}
     {{ Html::script('admin_asset/js/firebase.js') }}

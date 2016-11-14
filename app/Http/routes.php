@@ -45,3 +45,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('users', 'UserController', ['only' => [
+        'edit', 'update'
+    ]]);
+});
+

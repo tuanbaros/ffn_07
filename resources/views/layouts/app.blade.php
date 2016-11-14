@@ -4,18 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@lang('login.title')</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{ asset('/css/family-lato-font.css') }}">
-
     {{ Html::style('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}
     {{ Html::style('/bower_components/font-awesome/css/font-awesome.min.css') }}
-    {{ Html::style('/bower_components/sweetalert/dist/sweetalert.css') }}
+    {{ Html::style('/bower_components/sweetalert2/dist/sweetalert2.css') }}
 
     <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/show-profile.css') }}">
+
+    @yield('style')
+
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -48,8 +49,7 @@
                         <li><a href="{{ url('/register') }}">@lang('login.register')</a></li>
                     @else
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->name }}<span class="caret"></span>
+                            <a href="#" id="username" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> {{ Auth::user()->name }}<span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
@@ -61,16 +61,15 @@
                                             @else
                                                 {{ Html::image(Auth::user()->avatar, '', ['class' => 'img-circle']) }}
                                             @endif
-                                            <h3>{{ Auth::user()->name }}</h3>
+                                            <h3 id="user-name-h3">{{ Auth::user()->name }}</h3>
                                             <h4>Email: {{ Auth::user()->email }}</h4>
-                                            <h4>State: Online</h4>
                                             <div class="logout">
                                                 <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>
                                                     @lang('login.logout')
                                                 </a>
                                             </div>
                                             <div class="edit">
-                                                <a href=""><i class="fa fa-btn fa-edit"></i>@lang('profile.edit')</a>
+                                                <a href="{{ route('users.edit', ['users' => Auth::user()]) }}"><i class="fa fa-btn fa-edit"></i>@lang('profile.edit')</a>
                                             </div>
                                         </div>
                                     </div>
@@ -88,6 +87,9 @@
     <!-- JavaScripts -->
     {{ Html::script('/bower_components/jquery/dist/jquery.min.js') }}
     {{ Html::script('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}
-    {{ Html::script('/bower_components/sweetalert/dist/sweetalert.min.js') }}
+    {{ Html::script('/bower_components/sweetalert2/dist/sweetalert2.min.js') }}
+    {{ Html::script('/bower_components/firebase/firebase.js') }}
+    {{ Html::script('admin_asset/js/firebase.js') }}
+    @yield('script')
 </body>
 </html>
