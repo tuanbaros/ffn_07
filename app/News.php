@@ -12,13 +12,21 @@ class News extends BaseModel
 {
     protected $table = 'news';
 
-    protected $rules = [
-        'description' => 'required|max:200|min:10',
-        'content' => 'required|min:10',
-        'cate_id' => 'required',
-        'country_id' => 'required',
-        'title' => 'required|max:100',
-    ];
+    public function rules($ruleName)
+    {
+        if ($ruleName == 'updateRule') {
+            $titleRules = 'required|max:100|unique:news,title,' . $this->id;
+        } else {
+            $titleRules = 'required|max:100|unique:news,title';
+        }
+        return [
+            'title' => $titleRules,
+            'description' => 'required|max:200|min:10',
+            'content' => 'required|min:10',
+            'country_id' => 'required|exists:countries,id',
+            'cate_id' => 'required|exists:categories,id',
+        ];
+    }
 
     protected $fillable = [
         'title',

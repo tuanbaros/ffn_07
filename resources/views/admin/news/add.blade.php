@@ -67,6 +67,19 @@
                 </div>
             {!! Form::close() !!}
             <script type="text/javascript">CKEDITOR.replace('content');</script>
+            <script type="text/javascript" src="{{ asset('admin_asset/js/firebase.js') }}"></script>
         </div>
+        <script type="text/javascript">
+           
+            var config = {
+                apiKey: '{{ config('firebase.apiKey') }}',
+                authDomain: '{{ config('firebase.authDomain') }}',
+                databaseURL: '{{ config('firebase.databaseURL') }}',
+                storageBucket: '{{ config('firebase.storageBucket') }}',
+                messagingSenderId: '{{ config('firebase.messagingSenderId') }}',
+            };
+            var f = new firebaseCustom(config);
+
+        </script>
     </div>
 @stop
