@@ -14,12 +14,24 @@ use Validator;
 class Country extends BaseModel
 {
     protected $table = 'countries';
-    
-    protected $rules = [
-        'name' => 'required|unique:countries,name',
-        'code' => 'required|numeric'
+
+    protected $fillable = [
+        'name',
+        'code'
     ];
 
+    public function rules($ruleName)
+    {
+        if ($ruleName == 'updateRule') {
+            $nameRule = 'required|unique:countries,name,' . $this->id;
+        } else {
+            $nameRule = 'required|unique:countries,name';
+        }
+        return [
+            'name' => $nameRule,
+            'code' => 'required|numeric'
+        ];
+    }
 
     public function news()
     {

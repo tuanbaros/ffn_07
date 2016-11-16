@@ -13,6 +13,13 @@
             </div>
 
             <div class="col-lg-12">
+                <a class="btn btn-primary" href="{{ route('admin.country.create') }}">
+                    @lang('admin.bt_add', ['name' => 'Country'])
+                </a>
+                <div class="space20"></div>
+            </div>
+
+            <div class="col-lg-12">
                 @include('admin.shared.flash')
             </div>
 
@@ -35,10 +42,13 @@
                         <td>{!! '+' . $country->code !!}</td>
                         <td>{!! $country->created_at->format('d-m-Y') !!}</td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                            <a href="#">@lang('admin.edit')</a> 
+                            <a href="{!! route('admin.country.edit', $country->id) !!}">@lang('admin.edit')</a> 
                         </td>
-                        <td class="center"><i class="fa fa-trash-o fa-fw"></i>
-                            <a href="#">@lang('admin.delete')</a> 
+                        <td class="center">
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['admin.country.destroy',
+                                $country->id] ]) !!}
+                                {!! Form::submit( Lang::get('Delete'), ['class' => 'btn btn-danger btn-xs']) !!}
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach

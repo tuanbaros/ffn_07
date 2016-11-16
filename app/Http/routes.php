@@ -20,18 +20,23 @@ Route::get('/news', function() {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+
     Route::get('/', function() {
         return view('admin.index');
     });
+
     Route::get('teams/search', ['as' => 'admin.teams.search', 
-        'uses' => 'TeamsController@search']);
+      'uses' => 'TeamsController@search']);
     
     Route::resource('categories', 'CategoriesController');
+
     Route::resource('news', 'NewsController');
-    Route::resource('teams', 'TeamsController');
-    Route::resource('country', 'CountryController', ['only' => ['index', 'create', 'store']]);
     
+    Route::resource('teams', 'TeamsController');
+
     Route::resource('league', 'LeagueController');
+    
+    Route::resource('country', 'CountryController');
 });
 
 Route::auth();

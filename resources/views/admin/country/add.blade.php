@@ -13,7 +13,7 @@
                 </h1>
             </div>
 
-            <div class="col-lg-7 col-lg-offset-1" style="padding-bottom:120px">
+            <div class="col-lg-7 col-lg-offset-1" id="form-add">
                 @include('admin.shared.error')
 
                 {!! Form::open(['route' => 'admin.country.store' ]) !!}
