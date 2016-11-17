@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     });
 
     Route::get('teams/search', ['as' => 'admin.teams.search', 
-      'uses' => 'TeamsController@search']);
+        'uses' => 'TeamsController@search']);
     
     Route::resource('categories', 'CategoriesController');
 

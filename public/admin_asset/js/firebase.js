@@ -12,17 +12,18 @@ var firebaseCustom = function() {
     };
 
     this.element = {
-        id_avatar_file: null,
-        id_img_circle: null,
-        id_progress: null,
-        id_input_logo: null,
+        input_file: null,
+        img_circle: null,
+        progress: null,
+        input_file_logo: null,
     };
+
+    this.firebase = null;
 
     this.init = function(config) {
         if (typeof config !== 'undefined') {
             this.changeConfig(config);
-            console.log(this.config);
-            firebase.initializeApp(this.config);
+            this.firebase = firebase.initializeApp(this.config);
         }
     };
 
@@ -35,6 +36,33 @@ var firebaseCustom = function() {
     this.changeConfig = function(config) {
         for (var p_key in this.config) {
             this.config[p_key] = config[p_key];
+        }
+    };
+
+    this.uploadImage = function() {
+        var current = this;
+        var file = document.getElementById(current.element.input_file).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(current.element.img_circle).attr('src', e.target.result);
+            };
+            reader.readAsDataURL(file);
+            var storageRef = this.firebase.storage().ref();
+            var uploadTask = storageRef.child('images/' + file.name).put(file, this.metadata);
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                $(current.element.progress).css('width', progress + '%');
+            }, function(error) {
+                $(current.element.input_file_logo).val(null);
+                swal('Error', 'Error load image!')
+            }, function() {
+                var downloadURL = uploadTask.snapshot.downloadURL;
+                $(current.element.input_file_logo).val(downloadURL);
+                swal("Success!", "Upload Image Complete!", "success")
+            });
+        } else {
+            $(current.element.progress).css('width', '0%');
         }
     };
 }
