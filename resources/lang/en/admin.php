@@ -46,4 +46,12 @@ return [
         'edit_success' => 'Edit success :name',
         'delete_success'=> 'Delete success :name'
     ],
+
+    'user' => 'User',
+    'email' => 'Email',
+    'avatar' => 'Avatar',
+    'active' => 'Active',
+    'none' => 'Not Found',
+    'default-avatar' => '/images/avatar.png',
+    'actived' => 'Disable'
 ];

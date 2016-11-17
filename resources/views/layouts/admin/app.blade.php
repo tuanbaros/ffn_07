@@ -11,7 +11,7 @@
     {{ Html::script('/bower_components/bootstrap/dist/js/bootstrap.min.js') }}
     {{ Html::style('/bower_components/bootstrap/dist/css/bootstrap.min.css') }}
     {{ Html::style('/bower_components/font-awesome/css/font-awesome.min.css') }}
-    {{ Html::style('/bower_components/sweetalert/dist/sweetalert.css') }}
+    {{ Html::style('/bower_components/sweetalert2/dist/sweetalert2.css') }}
     {{ Html::style('admin_asset/css/admin.css') }}
     {{ Html::style('bower_components/font-awesome/css/font-awesome.css') }}
     {{ Html::style('bower_components/font-awesome/css/font-awesome.min.css') }}
@@ -20,7 +20,7 @@
     {{ Html::style('bower_components/font-awesome/css/font-awesome.css') }}
     {{ Html::style('bower_components/font-awesome/css/font-awesome.css') }}
     {{ Html::script('/bower_components/firebase/firebase.js') }}
-    {{ Html::script('/bower_components/sweetalert/dist/sweetalert2.min.js') }}
+    {{ Html::script('/bower_components/sweetalert2/dist/sweetalert2.min.js') }}
     {{ Html::style('/css/login.css') }}
     {{ Html::script('admin_asset/js/admin.js') }}
     {{ Html::script('admin_asset/js/firebase.js') }}
@@ -30,5 +30,6 @@
         @include('layouts.admin.header')
         @yield('content')
     </div>
+    @yield('script')
 </body>
 </html>
