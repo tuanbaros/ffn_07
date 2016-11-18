@@ -1,0 +1,60 @@
+.profile {
+    position: absolute;
+    top: 0;
+    border: 1px solid #dfd8d9;
+    right: 0;
+    width: 350px;
+    background: #eaeef1 no-repeat scroll 30% center;
+    transition: width 0.6s ease-in 0.4s;
+}
+
+.avatar {
+    position: relative;
+    margin: 50px 0 20px 0;
+}
+
+.avatar h3, .avatar h4 { 
+    color: #ac6166; 
+    text-align: center;
+}
+            
+.avatar img {
+    width: 150px;
+    height: 150px;
+    margin: 0 100px 0 100px;
+    box-shadow: 0px 0px 20px #9baebd;
+}
+
+.logout {
+    width: 90px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    background: #e04548;
+    float: right;
+}
+
+.logout a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logout:hover {
+    background: #D83C3C;
+}
+
+.edit {
+    width: 90px;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    background: #449d44;
+    float: left;
+}
+
+.edit a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.edit:hover {
+    background: #6A9D44;
+}

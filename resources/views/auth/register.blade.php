@@ -15,7 +15,7 @@
                     ]) !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            {!! Form::label('name', 'Name', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('name', Lang::get('profile.fullname'), ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
                                 {!! Form::text('name', null, [ 'class' => 'form-control']) !!}
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            {!! Form::label('email', 'E-Mail Address', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('email', Lang::get('profile.email'), ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
                                 {!! Form::email('email', null, ['class' => 'form-control']) !!}
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            {!! Form::label('password', 'Password', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('password', Lang::get('profile.password'), ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
                                 {!! Form::password('password', ['class' => 'form-control']) !!}
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                            {!! Form::label('password-confirm', 'Confirm Password', ['class' => 'col-md-4 control-label']) !!}
+                            {!! Form::label('password-confirm', Lang::get('profile.confirm'), ['class' => 'col-md-4 control-label']) !!}
 
                             <div class="col-md-6">
                                 {!! Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password-confirm']) !!}
@@ -72,8 +72,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {!! Form::submit('Register', ['class' => 'btn btn-primary']) !!}
-
+                                {!! Form::submit(Lang::get('profile.register'), ['class' => 'btn btn-primary']) !!}
                             </div>
                         </div>
 

@@ -3,10 +3,22 @@
 namespace App;
 
 use App\Comment;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+
+use Validator;
+
+class User extends BaseModel implements
+    AuthenticatableContract,
+    CanResetPasswordContract,
+    AuthorizableContract
 {
+    use Authenticatable, Authorizable, CanResetPassword;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +36,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|max:50|min:4'
+        ];
+    }
 
     public function comments()
     {

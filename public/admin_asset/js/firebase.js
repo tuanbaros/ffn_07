@@ -20,6 +20,8 @@ var firebaseCustom = function() {
 
     this.firebase = null;
 
+    this.urlImage = null;
+
     this.init = function(config) {
         if (typeof config !== 'undefined') {
             this.changeConfig(config);
@@ -37,6 +39,10 @@ var firebaseCustom = function() {
         for (var p_key in this.config) {
             this.config[p_key] = config[p_key];
         }
+    };
+
+    this.getUrlImage = function() {
+        return this.urlImage; 
     };
 
     this.uploadImage = function() {
@@ -58,8 +64,9 @@ var firebaseCustom = function() {
                 swal('Error', 'Error load image!')
             }, function() {
                 var downloadURL = uploadTask.snapshot.downloadURL;
+                current.urlImage = downloadURL;
                 $(current.element.input_file_logo).val(downloadURL);
-                swal("Success!", "Upload Image Complete!", "success")
+                swal("Success!", "Upload Image Complete!", "success");
             });
         } else {
             $(current.element.progress).css('width', '0%');
