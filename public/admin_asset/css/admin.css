@@ -198,6 +198,12 @@ body {
     color: #d9534f;
 }
 
+.btn.btn-primary.filter-player-admin {
+    position: absolute;
+    right: -45px;
+    top: 0px;
+}
+
 .btn-primary.btn-outline:hover,
 .btn-success.btn-outline:hover,
 .btn-info.btn-outline:hover,
@@ -406,14 +412,15 @@ table.dataTable thead .sorting:after {
     padding-bottom: 120px;
 }
 
-#position_tr{
-    background: white;
+
+#dataTables-example tr.position_tr{
+    background: #fff;
 }
 
-#position_td {
+#dataTables-example tr.position_tr td {
     border: 1px solid #fff;
 }
 
-#position_td h4 {
+#dataTables-example tr.position_tr td h4 {
     margin-left: 40%;
 }

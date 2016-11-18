@@ -31,6 +31,9 @@ return [
     'team' => 'Team',
     'position' => 'Position',
 
+    'all' => 'All :name',
+    'filter' => 'Filter',
+
     'league_season' => 'League Season',
 
     'team_achievement' => 'Team Achievement',

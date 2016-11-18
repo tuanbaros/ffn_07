@@ -16,7 +16,7 @@ class Player extends BaseModel
     protected $fillable = [
         'name',
         'introduction',
-        'position',
+        'position_id',
         'birthday',
         'avatar',
         'team_id',
@@ -33,12 +33,22 @@ class Player extends BaseModel
         return [
             'name' => $nameRules,
             'introduction' => 'required',
-            'position' => 'required',
-            'birthday' => 'required',
+            'position_id' => 'required|exists:positions,id',
+            'birthday' => 'required|date',
             'avatar' => 'required',
             'team_id' => 'required|exists:teams,id',
             'country_id' => 'required|exists:countries,id'
         ];
+    }
+
+    public function scopeSearchByName($query, $name)
+    {
+        return $query->where('name', 'like', '%' . $name . '%');
+    }
+
+    public function scopeFilterPlayer($query, $id)
+    {
+        return $query->where('team_id', $id);
     }
 
     public function country()
@@ -53,7 +63,7 @@ class Player extends BaseModel
 
     public function position()
     {
-        return $this->belongsTo(Player::class);
+        return $this->belongsTo(Position::class);
     }
 
     public function matchPlayers()
