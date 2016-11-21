@@ -405,3 +405,15 @@ table.dataTable thead .sorting:after {
 #form {
     padding-bottom: 120px;
 }
+
+#position_tr{
+    background: white;
+}
+
+#position_td {
+    border: 1px solid #fff;
+}
+
+#position_td h4 {
+    margin-left: 40%;
+}

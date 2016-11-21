@@ -6,6 +6,7 @@ use App\Country;
 use App\Team;
 use App\MatchPlayer;
 use App\PlayerAward;
+use App\Position;
 use Illuminate\Database\Eloquent\Model;
 
 class Player extends BaseModel
@@ -48,6 +49,11 @@ class Player extends BaseModel
     public function team()
     {
     	return $this->belongsTo(Team::class);
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Player::class);
     }
 
     public function matchPlayers()
