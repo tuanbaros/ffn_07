@@ -11,8 +11,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-use Validator;
-
 class User extends BaseModel implements
     AuthenticatableContract,
     CanResetPasswordContract,
@@ -25,7 +23,8 @@ class User extends BaseModel implements
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'is_active', 'is_admin'
+        'name', 'email', 'password', 'is_active', 'is_admin', 'avatar',
+        'facebook_id', 'google_id'
     ];
 
     /**
@@ -47,5 +46,12 @@ class User extends BaseModel implements
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function scopeFindUser($query, $data)
+    {
+        return $query->where('email', $data)
+            ->orWhere('facebook_id', $data)
+            ->orWhere('google_id', $data);
     }
 }

@@ -65,3 +65,13 @@ Route::group(['middleware' => 'auth'], function() {
         'edit', 'update'
     ]]);
 });
+
+Route::get('auth/{provider}', [
+    'as' => 'provider.redirect',
+    'uses' => 'Auth\AuthController@redirectToProvider'
+]);
+
+Route::get('auth/{provider}/callback', [
+    'as' => 'provider.handle',
+    'uses' => 'Auth\AuthController@handleProviderCallback'
+]);
