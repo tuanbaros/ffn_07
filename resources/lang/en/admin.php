@@ -30,19 +30,12 @@ return [
     'avatar' => 'Avatar',
     'team' => 'Team',
     'position' => 'Position',
-    
-    'positions' => [
-        'go' => 'Goalkeeper',
-        'mi' => 'Midfielder',
-        'st' => 'Striker',
-        'de' => 'Defender',
-        'ce' => 'Centre Defender',
-    ],
 
     'league_season' => 'League Season',
 
     'team_achievement' => 'Team Achievement',
     'year' => 'Year',
+    'table_empty' => 'Table empty',
     
     'message' => [
         'holder' => 'Please Enter :name',
