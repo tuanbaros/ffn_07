@@ -24,7 +24,7 @@ class User extends BaseModel implements
      */
     protected $fillable = [
         'name', 'email', 'password', 'is_active', 'is_admin', 'avatar',
-        'facebook_id', 'google_id'
+        'facebook_id', 'google_id', 'remember_token'
     ];
 
     /**
@@ -33,14 +33,18 @@ class User extends BaseModel implements
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
-    public function rules()
+    public function rules($ruleName)
     {
+        if ($ruleName == 'update') {
+            return ['name' => 'required|max:50|min:4'];
+        }
         return [
-            'name' => 'required|max:50|min:4'
-        ];
+            'email' => 'required|email',
+            'password' => 'required',
+        ];  
     }
 
     public function comments()

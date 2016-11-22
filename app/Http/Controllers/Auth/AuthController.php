@@ -6,9 +6,15 @@ use App\User;
 use Auth;
 use Socialite;
 use Validator;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use DB;
+use Lang;
+use Hash;
+use App\Helpers\MyFuncs;
 
 class AuthController extends Controller
 {
@@ -68,8 +74,8 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'is_active' => true
+            'remember_token' => Hash::make($data['email']),
+            'password' => bcrypt($data['password'])
         ]);
     }
 
@@ -139,5 +145,82 @@ class AuthController extends Controller
             'facebook_id' => $facebookId,
             'google_id' => $googleId
         ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return User
+     */
+    protected function login(Request $request)
+    {
+        $user = new User;
+
+        $data = $request->only('email', 'password');
+
+        $user->validate($data, 'login');
+
+        if (auth()->attempt([
+            'email' => $request->input('email'), 
+            'password' => $request->input('password')
+        ])) {
+            if (!auth()->user()->is_active) {
+                $this->logout();
+                return back()->with('warning', Lang::get('login.please.active'));
+            }
+            return redirect()->to('home');
+        }
+        return back()->with('warning', Lang::get('login.login.wrong'));
+    }
+
+    /**
+     * Register new user
+     *
+     * @param  array  $data
+     * @return User
+     */
+    public function register(Request $request)
+    {
+        $input = $request->only('name', 'email', 'password', 'password_confirmation');
+        $validator = $this->validator($input);
+
+        if ($validator->passes()) {
+            $user = $this->create($input)->toArray();
+            $user['link'] = $this->createToken($user);
+            MyFuncs::sendEmail([
+                'view' => 'auth.emails.activation',
+                'data' => $user,
+                'email' => $user['email'],
+                'subject' => Lang::get('login.mail.subject')
+            ]);
+
+            return redirect()->to('login')->with('success', Lang::get('login.please.check.mail'));
+        }
+        return back()->with('errors', $validator->errors());
+    }
+
+    /**
+     * userActivation for user Activation Code
+     *
+     * @param  array  $data
+     * @return User
+     */
+    public function userActivation($id, $token)
+    {
+        $user = User::findUser($id)->first();
+        if ($user && $this->createToken($user) == $token) {
+            if ($user->is_active) {
+                return redirect()->to('login')->with('success', Lang::get('login.already.actived'));
+            }
+            $user->update(['is_active' => true]);
+            return redirect()->to('login')->with('success', Lang::get('login.success.actived'));       
+        }
+        return redirect()->to('login')->with('warning', Lang::get('login.invalid.token'));
+    }
+
+    public function createToken($data)
+    {
+        return md5($data['email'] . $data['name'] . $data['remember_token']);
     }
 }
