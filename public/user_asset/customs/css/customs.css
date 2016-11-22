@@ -41,6 +41,18 @@ div.title-readest-news {
     margin-left: 15px;
 }
 
+.breadcrumb-date {
+    text-align: right;
+}
+
+.breadcrumb {
+    border-radius: 0px !important;
+}
+
+.breadcrumb span {
+    font-size: smaller;
+}
+
 .break {
     clear: both;
     height: 10px;
@@ -68,6 +80,16 @@ div.title-readest-news {
 .display-title {
     margin-right: -35px !important;
     margin-bottom: 10px !important;
+}
+
+.comment.comment-content {
+    height: 400px;
+    margin-bottom: 15px;
+    overflow: auto;
+}
+
+.comment.comment-content .media-body {
+    padding-top: 5px;
 }
 
 .space20 {
@@ -129,6 +151,22 @@ a:hover {
 .myheader {
     background-color: #337AB7;
     color:white;
+}
+
+.media-object.img-circle.img-responsive.slide-icon {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.news-title-in-news-detail {
+    font-weight: bold;
+    font-family: fantasy;
+    margin-top: 0px !important;
+}
+
+.newsContentDetail {
+    margin-top: 20px;
+    margin-bottom: 30px; 
 }
 
 .clear {

@@ -44,7 +44,7 @@ class User extends BaseModel implements
         return [
             'email' => 'required|email',
             'password' => 'required',
-        ];  
+        ];
     }
 
     public function comments()

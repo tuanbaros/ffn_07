@@ -32,4 +32,9 @@ return [
     'hot_news' => 'HOT NEWS',
     'readest_news' => 'READEST NEWS',
     'has_not_category' => 'Has not category',
+
+    'news_detail' => 'News Detail',
+    'write_comment' => 'Write Comment ...',
+    'comment' => 'Comment',
+    'other_news' => 'OTHER NEWS'
 ];
