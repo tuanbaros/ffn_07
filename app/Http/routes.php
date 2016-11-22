@@ -36,6 +36,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
     Route::resource('teams', 'TeamsController');
 
     Route::resource('league', 'LeagueController');
+
+    Route::resource('league_season', 'LeagueSeasonController');
     
     Route::resource('country', 'CountryController');
 

@@ -45,7 +45,8 @@ return [
         'complate' => 'Complate add :name',
         'not_found' => 'Not found :name',
         'edit_success' => 'Edit success :name',
-        'delete_success'=> 'Delete success :name'
+        'delete_success'=> 'Delete success :name',
+        'empty_data' => 'Not found data. Please enter :name !'
     ],
 
     'user' => 'User',
@@ -54,5 +55,8 @@ return [
     'active' => 'Active',
     'none' => 'Not Found',
     'default-avatar' => '/images/avatar.png',
-    'actived' => 'Disable'
+    'actived' => 'Disable',
+
+    'league_season' => 'League Season',
+    'year' => 'Year'
 ];

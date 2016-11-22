@@ -27,7 +27,7 @@ class CountryController extends Controller
         $country = new Country();
         $data = $request->only('name', 'code');
         if ($country->validate($data, 'storeRule')) {
-            Country::create($data);
+            $country->create($data);
 
             return redirect()->route('admin.country.index')->with([
                 'flash_level' => Lang::get('admin.success'),
