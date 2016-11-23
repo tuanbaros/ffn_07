@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Country;
 use App\Team;
 use App\Player;
+use App\Position;
 
 use Lang;
 
@@ -19,21 +20,23 @@ class PlayerController extends Controller
     public function index()
     {
         $players = Player::paginate(config('view.paginate'));
-        return view('admin.player.index', compact('players'));
+        $positions = Position::all()->lists('name', 'id');
+        $teams = Team::all()->lists('name', 'id');
+        return view('admin.player.index', compact('players', 'teams', 'position'));
     }
 
     public function create()
     {
         $countries = Country::all()->lists('name', 'id');
         $teams = Team::all()->lists('name', 'id');
-        $positions = Lang::get('admin.positions');
+        $positions = Position::all()->lists('name', 'id');
         return view('admin.player.create', compact('countries', 'teams', 'positions'));
     }
 
     public function store(Request $request)
     {
         $player = new Player;
-        $data = $request->only('name', 'introduction', 'position', 'birthday', 'avatar',
+        $data = $request->only('name', 'introduction', 'position_id', 'birthday', 'avatar',
             'team_id', 'country_id');
         if ($player->validate($data, 'storeRule')) {
             Player::create($data);
@@ -56,7 +59,7 @@ class PlayerController extends Controller
         }
         $teams = Team::all()->lists('name', 'id');
         $countries = Country::all()->lists('name', 'id');
-        $positions = Lang::get('admin.positions');
+        $positions = Position::all()->lists('name', 'id');
         return view('admin.player.edit', compact('player', 'teams', 'countries', 'positions'));
     }
 
@@ -69,7 +72,7 @@ class PlayerController extends Controller
                 'flash_message' => Lang::get('admin.message.not_found', ['name' => 'player'])
             ]);
         }
-        $data = $request->only('name', 'introduction', 'position', 'birthday', 'avatar', 'team_id', 'country_id');
+        $data = $request->only('name', 'introduction', 'position_id', 'birthday', 'avatar', 'team_id', 'country_id');
         if ($player->validate($data, 'updateRule')) {
             $player->update($data);
             return redirect()->route('admin.player.index')->with([
@@ -94,5 +97,24 @@ class PlayerController extends Controller
             'flash_level' => Lang::get('admin.success'),
             'flash_message' => Lang::get('admin.message.delete_success', ['name' => 'Player'])
         ]);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $players = Player::searchByName($search)->paginate(config('view.paginate'));
+        $teams = Team::all()->lists('name', 'id');
+        return view('admin.player.index', compact('players', 'teams'));
+    }
+
+
+    public function filter(Request $request)
+    {
+        $filter = $request->filter;
+        $players = $filter ? Player::filterPlayer($filter)->paginate(config('view.paginate')) :
+            Player::paginate(config('view.paginate'));
+        $teams = Team::all()->lists('name', 'id');
+        $positions = Position::all()->lists('name', 'id');
+        return view('admin.player.index', compact('players', 'teams', 'positions'));
     }
 }

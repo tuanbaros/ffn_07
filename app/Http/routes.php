@@ -39,7 +39,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
     
     Route::resource('country', 'CountryController');
 
-    Route::resource('player', 'PlayerController');
+    Route::resource('player', 'PlayerController', ['except' => 'show']);
+
+    Route::get('player/search', ['as' => 'admin.player.search', 'uses' => 'PlayerController@search']);
+
+    Route::get('player/filter', ['as' => 'admin.player.filter', 'uses' => 'PlayerController@filter']);
 
     Route::resource('users', 'UserController', [
         'only' => ['index', 'update', 'destroy']
