@@ -9,11 +9,24 @@ use App\Match;
 use App\PlayerAward;
 use Illuminate\Database\Eloquent\Model;
 
-class LeagueSeason extends Model
+class LeagueSeason extends BaseModel
 {
     protected $table = 'league_seasons';
     
     protected $fillable = ['year', 'league_id'];
+
+    public function rules($ruleName)
+    {
+        if ($ruleName == 'updateRule') {
+            $nameRules = 'required|numeric|unique:league_seasons,year,' . $this->id;
+        } else {
+            $nameRules = 'required|numeric|unique:league_seasons,year';
+        }
+        return [
+            'year' => $nameRules,
+            'league_id' => 'required|exists:leagues,id'
+        ];
+    }
 
     public function league()
     {
