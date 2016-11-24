@@ -158,7 +158,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
     ],
 
     /*
@@ -207,7 +208,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'MyFuncs' => App\Helpers\MyFuncs::class,
     ],
 
 ];

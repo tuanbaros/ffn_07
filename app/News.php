@@ -36,6 +36,16 @@ class News extends BaseModel
         'country_id',
     ];
 
+    public function scopeGetNews($query, $take = 1, $column = 'created_at', $sort = 'desc', $skip = 0)
+    {
+        return $query->orderBy($column, $sort)->skip($skip)->take($take);
+    }
+
+    public function scopeGetNewsByCategory($query, $idCategory, $take = 1, $column = 'created_at', $sort = 'desc')
+    {
+        return $query->where('cate_id', '=', $idCategory)->orderBy($column, $sort)->take($take);
+    }
+
     public function comments()
     {
         return $this->hasMany(Comment::class);
