@@ -7,13 +7,18 @@
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Laravel</title>
-      
         <link href="{{ asset('user_asset/customs/css/customs.css') }}" rel="stylesheet">
         <link href="{{ asset('user_asset/customs/css/homepage.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
         <script type="text/javascript" src="{{ asset('user_asset/customs/js/customs.js') }}"></script>
-       
-        {!! Html::style('css/app.css') !!}
-        {!! Html::script('js/app.js') !!}
+        <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('bower_components/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/bootstrap/fonts/glyphicons-halflings-regular.woff2') }}">
+        <script type="text/javascript" src="{{ asset('bower_components/jquery-timeago/jquery.timeago.js') }}"></script>
     </head>
     <body>
 

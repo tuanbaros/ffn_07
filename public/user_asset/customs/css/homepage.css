@@ -21,6 +21,11 @@ body {
     margin-bottom: 0px;
 }
 
+.carousel-caption {
+    word-break: break-all;
+    bottom: 0px !important;
+}
+
 .carousel-control,
 .item {
     border-radius: 4px;

@@ -23,8 +23,16 @@ class Category extends BaseModel
         ];
     }
 
+    public function scopeNewsInCategory($query, $take = 1)
+    {
+        return Category::with('news')->get()->map(function($category) use ($take) {
+            $category->news = $category->news->take($take);
+            return $category;
+        });
+    }
+
     public function news()
     {
-        return $this->hasMany(News::class);
+        return $this->hasMany(News::class, 'cate_id', 'id');
     }
 }

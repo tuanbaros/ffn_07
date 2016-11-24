@@ -26,8 +26,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
         return view('admin.index');
     });
 
-    Route::get('teams/search', ['as' => 'admin.teams.search', 
-        'uses' => 'TeamsController@search']);
+    Route::get('teams/search', [
+        'as' => 'admin.teams.search', 
+        'uses' => 'TeamsController@search'
+    ]);
     
     Route::resource('categories', 'CategoriesController');
 
@@ -58,8 +60,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('users', 'UserController', ['only' => [
         'edit', 'update'
@@ -75,3 +75,8 @@ Route::get('auth/{provider}/callback', [
     'as' => 'provider.handle',
     'uses' => 'Auth\AuthController@handleProviderCallback'
 ]);
+
+Route::group(['namespace' => 'User'], function() {
+    Route::get('/home', 'HomeController@index');
+    Route::resource('/news','NewsController');
+});
