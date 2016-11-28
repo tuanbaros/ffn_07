@@ -83,3 +83,8 @@ Route::group(['namespace' => 'User'], function() {
     Route::resource('/news','NewsController');
     Route::resource('/news-category', 'NewsCategoryController');
 });
+
+Route::get('users/activation/{id}/{token}', [
+    'as' => 'users.activation',
+    'uses' => 'Auth\AuthController@userActivation'
+]);

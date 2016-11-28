@@ -16,7 +16,7 @@ class UserController extends Controller
 
     public function update(Request $request)
     { 
-        if ($this->user->validate($request->only('name'), $this->user->rules())) {
+        if ($this->user->validate($request->only('name'), $this->user->rules('update'))) {
             $this->user->name = $request->name;
             $this->user->avatar = $request->avatar;
             $this->user->save();
