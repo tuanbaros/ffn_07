@@ -7,35 +7,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">Home</a>
+            <a class="navbar-brand" href="{{ route('home') }}">@lang('user.home')</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="contact.html">CUP C1</a>
-                </li>
-                <li>
-                    <a href="contact.html">ANH</a>
-                </li>
-                <li>
-                    <a href="contact.html">TAY BAN NHA</a>
-                </li>
-                <li>
-                    <a href="contact.html">Y</a>
-                </li>
+                @foreach ($categories as $key => $element)
+                    <li>
+                        <a href="{{ route('news-category.show', $element->id) }}">{{ $element->name }}</a>
+                    </li>
+                @endforeach
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <span class ="glyphicon glyphicon-user"></span> Nguyen Van A <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="blog-home-1.html">Profile</a>
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">@lang('login.login')</a></li>
+                        <li><a href="{{ url('/register') }}">@lang('login.register')</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/profile') }}"><i class="fa fa-btn fa-edit"> @lang('text.admin_profile')</i></a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> @lang('login.logout')</a></li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="blog-post.html">Log out</a>
-                        </li>
-                    </ul>
+                    @endif
                 </li>
             </ul>
         </div>   

@@ -161,7 +161,7 @@
                 <div class='break'></div>
             </div>
 
-            @foreach ($cate as $keyCate => $c)
+            @foreach ($categories as $keyCate => $c)
                 <h1 class='page-header col-md-12'>
                     <a href="{{ route('news-category.show', $c->id) }}">{{ $c->name }}</a>
                 </h1>
@@ -208,7 +208,7 @@
                             </div>
                         @endif
                     @endforeach
-                    @if ($keyCate != ($cate->count() - 1))
+                    @if ($keyCate != ($categories->count() - 1))
                         <div class='break'></div>
                     @endif
                 </div>

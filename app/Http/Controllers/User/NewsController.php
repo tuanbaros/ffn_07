@@ -9,17 +9,20 @@ use App\Http\Requests;
 use App\News;
 use App\Comment;
 use App\User;
+use App\Category;
 use Auth;
 
 class NewsController extends Controller
 {
     public function show($id)
     {
+        $categories = Category::all();
         $news = News::findOrFail($id);
         $comments = $news->comments()->orderBy('created_at', 'desc')->get();
         $ortherNews = News::getNews(config('view.other_news'))->get();
         $readestNews = News::getNews(config('view.readest_news'), 'view_number')->get();
         return view('user.news.news-detail')->with([
+            'categories' => $categories,
             'news' => $news,
             'comments' => $comments,
             'ortherNews' => $ortherNews,

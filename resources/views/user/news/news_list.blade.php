@@ -7,10 +7,10 @@
     <h1 class='page-header'></h1>
     <ol class='breadcrumb'>
         <li><a href="{{ route('home') }}">@lang('text.home_title')</a></li>
-        @if ($cate)
+        @if ($category)
             <li>
-                <a href="{{ route('news-category.show', $cate->id) }}">
-                    {{ $cate->name }}
+                <a href="{{ route('news-category.show', $category->id) }}">
+                    {{ $category->name }}
                 </a>
             </li>
         @endif
