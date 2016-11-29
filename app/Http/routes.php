@@ -82,6 +82,7 @@ Route::group(['namespace' => 'User'], function() {
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::resource('/news','NewsController');
     Route::resource('/news-category', 'NewsCategoryController');
+    Route::post('/news/comments', 'NewsController@addComment');
 });
 
 Route::get('users/activation/{id}/{token}', [

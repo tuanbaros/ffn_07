@@ -55,7 +55,7 @@ class News extends BaseModel
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'news_id', 'id');
     }
 
     public function category()

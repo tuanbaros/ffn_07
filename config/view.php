@@ -46,5 +46,7 @@ return [
 
     'hot_default' => 1,
 
+    'other_news' => 10,
+    'readest_news' => 9,
     'status' => ['New', 'Process', 'Finish', 'Destroy']
 ];
