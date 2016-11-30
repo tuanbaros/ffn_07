@@ -20,6 +20,8 @@ return [
     'news_title' => 'News Title',
     'news_description' => 'News Description',
     'news_content' => 'News Content',
+    'img_title' => 'Title Image',
+    'news_hot' => 'News Is Hot',
     
     'select_cate' => 'Select Category',
     'select_country' => 'Select Country',

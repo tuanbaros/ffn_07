@@ -51,6 +51,22 @@
                             </span>
                         @endif
                     </div>
+                    <div class="form-group">
+                        {!! Form::checkbox('hot', 0) !!}
+                        {!! Form::label('hot', Lang::get('news.news_hot')) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('img-title', Lang::get('news.img_title')) !!}
+                        @if ($news->title_image)
+                            {!! Html::image($news->title_image, null, ['class' => 'img-responsive', 'id' => 'avatar', 'height' => '200']) !!}
+                        @endif
+                        <br><br>
+                        {!! Form::file('avatar-file', ['id' => 'avatar-file']) !!}
+                        {!! Form::hidden('title_image', null, ['id' => 'title_image']) !!}
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                     <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                         {!! Form::label('content', Lang::get('news.news_content')) !!}
                         {!! Form::textarea('content', null, ['class' => 'form-control',
@@ -66,12 +82,25 @@
                     </div>
                 {!! Form::close() !!}
                 <script type="text/javascript">CKEDITOR.replace('content');</script>
+                <script type="text/javascript" src="{{ asset('admin_asset/js/news.js') }}"></script>
+                <script type="text/javascript">
+                    var f = new firebaseCustom();
+                    var n = new news();
+                    f.init({
+                        apiKey: '{{ config('firebase.apiKey') }}',
+                        authDomain: '{{ config('firebase.authDomain') }}',
+                        databaseURL: '{{ config('firebase.databaseURL') }}',
+                        storageBucket: '{{ config('firebase.storageBucket') }}',
+                        messagingSenderId: '{{ config('firebase.messagingSenderId') }}',
+                    });
+                    n.init(f);
+                </script>
             @else
                 <p>
                     <div class="alert alert-danger">
                         @lang('news.not_search_news')
                     </div>
-                </p>	
+                </p>
             @endif
         </div>
     </div>
