@@ -34,6 +34,8 @@ class News extends BaseModel
         'content',
         'cate_id',
         'country_id',
+        'title_image',
+        'hot',
     ];
 
     public function scopeGetNews($query, $take = 1, $column = 'created_at', $sort = 'desc', $skip = 0)

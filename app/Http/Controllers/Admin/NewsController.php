@@ -31,7 +31,8 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $news = new News();
-        $data = $request->only('title', 'description', 'content', 'cate_id', 'country_id');
+        $data = $request->only('title', 'description', 'content', 
+            'cate_id', 'country_id', 'title_image', 'hot');
         if ($news->validate($data, 'storeRule')) {
             News::create($data);
             Session::flash('flash_message', Lang::get('news.add_news_success'));
@@ -57,7 +58,7 @@ class NewsController extends Controller
                 'flash_message', Lang::get('news.not_search_news'),
                 'flash_level' => 'danger']);
         }
-        $data = $request->only('title', 'description', 'content', 'cate_id', 'country_id');
+        $data = $request->only('title', 'description', 'content', 'cate_id', 'country_id', 'title_image');
         if ($news->validate($data, 'updateRule')) {
             $news->update($data);
             return redirect()->back()->with([

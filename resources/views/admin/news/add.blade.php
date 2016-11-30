@@ -51,6 +51,21 @@
                         </span>
                     @endif
                 </div>
+                <div class="form-group">
+                    {!! Form::checkbox('hot', 1) !!}
+                    {!! Form::label('hot', Lang::get('news.news_hot')) !!}
+                </div>
+                <div class="form-group">
+                    {!! Form::label('img-title', Lang::get('news.img_title')) !!}
+                    {!! Html::image(null, null, ['class' => 'img-responsive', 'id' => 'avatar', 'height' => '200']) !!}
+                    <br><br>
+                    {!! Form::file('avatar-file', ['id' => 'avatar-file']) !!}
+                    {!! Form::hidden('title_image', null, ['id' => 'title_image']) !!}
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" 
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
                 <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                     {!! Form::label('content', Lang::get('news.news_content')) !!}
                     {!! Form::textarea('content', null, ['class' => 'form-control',
@@ -67,19 +82,19 @@
                 </div>
             {!! Form::close() !!}
             <script type="text/javascript">CKEDITOR.replace('content');</script>
-            <script type="text/javascript" src="{{ asset('admin_asset/js/firebase.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('admin_asset/js/news.js') }}"></script>
         </div>
         <script type="text/javascript">
-           
-            var config = {
+            var f = new firebaseCustom();
+            var n = new news();
+            f.init({
                 apiKey: '{{ config('firebase.apiKey') }}',
                 authDomain: '{{ config('firebase.authDomain') }}',
                 databaseURL: '{{ config('firebase.databaseURL') }}',
                 storageBucket: '{{ config('firebase.storageBucket') }}',
                 messagingSenderId: '{{ config('firebase.messagingSenderId') }}',
-            };
-            var f = new firebaseCustom(config);
-
+            });
+            n.init(f);
         </script>
     </div>
 @stop

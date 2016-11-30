@@ -424,3 +424,7 @@ table.dataTable thead .sorting:after {
 #dataTables-example tr.position_tr td h4 {
     margin-left: 40%;
 }
+
+.progress-bar.progress-bar-striped.active {
+    width: 0%;
+}
