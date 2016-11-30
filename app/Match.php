@@ -41,7 +41,7 @@ class Match extends BaseModel
     public function findTeam($id)
     {
         $team = Team::find($id);
-        return $team->name;
+        return $team;
     }
 
     public function scopeFilterMatch($query, $id)

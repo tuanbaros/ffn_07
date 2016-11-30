@@ -56,7 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
     Route::resource('team_achievement', 'TeamAchievementController');
 
     Route::resource('position', 'PositionController');
-
+    
     Route::resource('match', 'MatchController', ['except' => 'show']);
 
     Route::get('match/filter', ['as' => 'admin.match.filter', 'uses' => 'MatchController@filter']);
@@ -64,6 +64,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
     Route::resource('rank', 'RankController', ['only' => ['index']]);
 
     Route::get('rank/filter', ['as' => 'admin.rank.filter', 'uses' => 'RankController@filter']);
+
+    Route::resource('match', 'MatchController');
+
+    Route::resource('player_award', 'PlayerAwardController');
+
+    Route::get('player_award/matchs/{id}', 'PlayerAwardController@getMatch');
+    Route::get('player_award/players/{id}', 'PlayerAwardController@getPlayer');
 });
 
 Route::auth();

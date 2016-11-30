@@ -50,12 +50,13 @@ return [
     
     'message' => [
         'holder' => 'Please Enter :name',
-        'complate' => 'Complate add :name',
+        'complate' => 'Complete add :name',
         'not_found' => 'Not found :name',
         'edit_success' => 'Edit success :name',
         'delete_success'=> 'Delete success :name',
         'empty_data' => 'Not found data. Please enter :name !',
-        'not_delete' => ':name are not cleared while in status proccess or finish'
+        'not_delete' => ':name are not cleared while in status proccess or finish',
+        'exists' => 'Award is exists in match'
     ],
 
     'user' => 'User',
@@ -71,6 +72,7 @@ return [
     'status' => 'Status',
     'lb_team' => 'Team :name',
     'goal' => 'Goal :name',
+
     'rank' => 'Rank',
     'won' => 'Won',
     'drawn' => 'Drawn',
@@ -79,4 +81,7 @@ return [
     'score' => 'Score',
     'news' => 'News',
     'category' => 'Category',
+
+    'player_award' => 'Player Award',
+    'player' => 'Player'
 ];
