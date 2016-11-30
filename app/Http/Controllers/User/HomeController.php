@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('user.home')->with([
-            'cate' => Category::newsInCategory(config('view.count_news_in_one_category')),
+            'categories' => Category::newsInCategory(config('view.count_news_in_one_category')),
             'hotNews' => News::getNews(config('view.count_hot_news'))->get(),
             'titleNews' => News::getNews(config('view.count_news_is_title'), 'created_at',
                 'desc', config('view.offset_of_news_is_title'))->get(),

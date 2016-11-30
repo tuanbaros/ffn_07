@@ -12,8 +12,10 @@ class NewsCategoryController extends Controller
 {
     public function show($id)
     {
+        $categories = Category::all();
         return view('user.news.news_list')->with([
-            'cate' => Category::findOrFail($id),
+            'categories' => $categories,
+            'category' => Category::findOrFail($id),
             'ortherNews' => News::getNewsByCategory($id, config('view.count_other_news'))->get(),
             'news' => News::getNewsByCategory($id)->paginate(config('view.count_news_in_news_category')),
             'titleNews' => News::getNewsIsTitle($id,
