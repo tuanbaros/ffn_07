@@ -36,7 +36,7 @@
                             <div class='space5'></div>
                             <div class='col-md-6 col-sm-9 col-xs-9'>
                                 <a href="{{ route('news.show', $element->id) }}">
-                                    {{ MyFuncs::handleTitle($element->description, 10) }}
+                                    {{ MyFuncs::handleTitle($element->description, 5) }}
                                 </a>
                             </div>
                             <div class='title-time-ago'>
@@ -54,7 +54,7 @@
                             <div class='space5'></div>
                             <div class='col-md-6 col-sm-9 col-xs-9'>
                                 <a href="{{ route('news.show', $element->id) }}">
-                                    {{ MyFuncs::handleTitle($element->description, 10) }}
+                                    {{ MyFuncs::handleTitle($element->description, 5) }}
                                 </a>
                             </div>
                             <div class='title-time-ago'>
@@ -72,7 +72,7 @@
                             <div class='space5'></div>
                             <div class='col-md-6 col-sm-9 col-xs-9'>
                                 <a href="{{ route('news.show', $element->id) }}">
-                                    {{ MyFuncs::handleTitle($element->description, 10) }}
+                                    {{ MyFuncs::handleTitle($element->description, 5) }}
                                 </a>
                             </div>
                             <div class='title-time-ago'>
@@ -95,9 +95,9 @@
                                     <img src="{{ $element->title_image }}" class='img-responsive slide-icon'>
                                 </a>
                                 <div class='space10'></div>
-                                <div class='col-md-12 col-sm-12 col-xs-12'>
+                                <div class='col-md-12 col-sm-12 col-xs-12 title'>
                                     <a href="{{ route('news.show', $element->id) }}">
-                                        {{ MyFuncs::handleTitle($element->title, 10) }}
+                                        {{ MyFuncs::handleTitle($element->title, 5) }}
                                     </a>
                                 </div>
                                 <div class='ratings'>

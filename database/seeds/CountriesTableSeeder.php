@@ -11,15 +11,19 @@ class CountriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('countries')->insert([
-            [
-                'name' => 'Anh',
-                'code' => 34
-            ],
-            [
-                'name' => 'Viet Nam',
-                'code' => 84
-            ]
-        ]);
+        $country = [
+            'Anh',
+            'Phap',
+            'Duc',
+            'Y',    
+            'Tay Ban Nha',
+        ];
+
+        for ($i = 0; $i < count($country); $i++) { 
+            DB::table('countries')->insert([
+                'name' => $country[$i],
+                'code' => $i,
+            ]);
+        }
     }
 }

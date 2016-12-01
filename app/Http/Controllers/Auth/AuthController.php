@@ -36,7 +36,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new authentication controller instance.
@@ -104,7 +104,7 @@ class AuthController extends Controller
             return redirect('auth/' . $provider);
         }
  
-        return redirect('/');
+        return redirect('/home');
     }
  
     /**

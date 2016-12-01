@@ -5,3 +5,25 @@ body {
 .fa-btn {
     margin-right: 6px;
 }
+
+.navbar-static-top { 
+    background-color: #222;
+}
+
+#home {
+    color: #fff;
+    font-weight: bold;
+}
+
+#home:hover {
+    color: yellow;
+}
+
+#username {
+    color: #fff;
+    font-weight: bold;
+}
+
+#username:hover {
+    color: yellow;
+}
