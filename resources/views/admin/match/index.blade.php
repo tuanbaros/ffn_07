@@ -55,8 +55,8 @@
                         @foreach ($matches as $key => $match)
                             <tr class='odd gradeX' align='center'>
                                 <td>{!! $key + 1 !!}</td>
-                                <td>{!! $match->findTeam($match->team1_id) !!}</td>
-                                <td>{!! $match->findTeam($match->team2_id) !!}</td>
+                                <td>{!! $match->findTeam($match->team1_id)->name !!}</td>
+                                <td>{!! $match->findTeam($match->team2_id)->name !!}</td>
                                 <td>{!! $match->start_time !!}</td>
                                 <td>{!! $match->end_time !!}</td>
                                 <td>{!! $match->checkStatus($match->status, $match->team1_goal) !!}</td>
