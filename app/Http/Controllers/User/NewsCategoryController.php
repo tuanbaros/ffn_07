@@ -8,16 +8,19 @@ use App\Http\Requests;
 use App\Category;
 use App\Country;
 use App\News;
+use App\League;
 
 class NewsCategoryController extends Controller
 {
     public function show($id)
     {
         $categories = Category::all();
-        $country = Country::all();
+        $countries = Country::all();
+        $leagues = League::all();
         return view('user.news.news_list')->with([
             'categories' => $categories,
-            'country' => $country,
+            'countries' => $countries,
+            'leaguesList' => $leagues,
             'category' => Category::findOrFail($id),
             'ortherNews' => News::getNewsByCategory($id, config('view.count_other_news'))->get(),
             'news' => News::getNewsByCategory($id)->paginate(config('view.count_news_in_news_category')),

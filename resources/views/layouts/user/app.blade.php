@@ -23,6 +23,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('user_asset/customs/css/media.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert2/dist/sweetalert2.css') }}">
         <script type="text/javascript" src="{{ asset('bower_components/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset('user_asset/customs/css/menu.css') }}">
     </head>
     <body>
 

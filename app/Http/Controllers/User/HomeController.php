@@ -13,21 +13,23 @@ use App\League;
 use App\LeagueSeason;
 use App\Team;
 use App\Rank;
+use App\Match;
 use Lang;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $country = Country::all();
+        $countries = Country::all();
         $leagues = League::lists('name', 'id')->all();
         $league_seasons = LeagueSeason::lists('year', 'id')->all();
         $teams = Team::all();
         $team = Team::teamWithRank();
         return view('user.home')->with([
-            'country' => $country,
+            'countries' => $countries,
             'leagues' => $leagues,
             'teams' => $teams,
+            'leaguesList' => League::all(),
             'league_seasons' => $league_seasons,
             'categories' => Category::newsInCategory(config('view.count_news_in_one_category')),
             'hotNews' => News::getNews(config('view.count_hot_news'))->get(),
@@ -36,6 +38,42 @@ class HomeController extends Controller
             'readestNews' => News::getNews(config('view.count_readest_news'), 'view_number')->get(),
             'otherNews' => News::getNews(config('view.count_other_news'), 'created_at',
                 'desc', config('view.offset_of_news_is_other'))->get(),
+        ]);
+    }
+
+    public function showMatch($id)
+    {
+        $countries = Country::all();
+        $categories = Category::all();
+        $leagues = League::all();
+        $matchs = Match::matchNotPlay($id)->get();
+        $otherNews = News::getNews(config('view.count_other_news'), 'created_at', 'desc')->get();
+        $readestNews = News::getNews(config('view.count_readest_news'), 'view_number')->get();
+        return view('user.match.match')->with([
+            'countries' => $countries,
+            'leaguesList' => $leagues,
+            'categories' => $categories,
+            'ortherNews' => $otherNews,
+            'readestNews' => $readestNews,
+            'matchs' => $matchs,
+        ]);
+    }
+
+    public function showCharts($id)
+    {
+        $countries = Country::all();
+        $categories = Category::all();
+        $leagues = League::all();
+        $ranks = Rank::filterRank($id);
+        $otherNews = News::getNews(config('view.count_other_news'), 'created_at', 'desc')->get();
+        $readestNews = News::getNews(config('view.count_readest_news'), 'view_number')->get();
+        return view('user.chart.chart')->with([
+            'countries' => $countries,
+            'leaguesList' => $leagues,
+            'categories' => $categories,
+            'ranks' => $ranks,
+            'ortherNews' => $otherNews,
+            'readestNews' => $readestNews,
         ]);
     }
 
