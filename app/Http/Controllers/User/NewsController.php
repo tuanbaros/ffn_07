@@ -11,6 +11,7 @@ use App\Comment;
 use App\User;
 use App\Category;
 use App\Country;
+use App\League;
 use Auth;
 
 class NewsController extends Controller
@@ -19,14 +20,16 @@ class NewsController extends Controller
     {
         $categories = Category::all();
         $news = News::findOrFail($id);
-        $country = Country::all();
+        $countries = Country::all();
+        $leagues = League::all();
         $comments = $news->comments()->orderBy('created_at', 'desc')->get();
         $ortherNews = News::getNews(config('view.other_news'))->get();
         $readestNews = News::getNews(config('view.readest_news'), 'view_number')->get();
         return view('user.news.news-detail')->with([
             'categories' => $categories,
             'news' => $news,
-            'country' => $country,
+            'leaguesList' => $leagues,
+            'countries' => $countries,
             'comments' => $comments,
             'ortherNews' => $ortherNews,
             'readestNews' => $readestNews,

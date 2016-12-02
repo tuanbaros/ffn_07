@@ -233,6 +233,43 @@
             @endif            
 
             <h1 id='header-readest-news' class='page-header'>      
+                @lang('teams.teams_list_header')
+            </h1>
+
+            <div class='row-item row'>
+                <div class='col-lg-6 col-sm-6 col-md-6 col-xs-6'>
+                    {!! Form::select('leagues', $leagues, null, ['id' => 'leagues']) !!}
+                </div>
+                <div class='col-lg-3 col-sm-3 col-md-3 col-xs-3'>
+                    {!! Form::select('league_seasons', $league_seasons, null, ['id' => 'league_seasons']) !!}
+                </div>
+                <div class='col-lg-3 col-sm-3 col-md-3 col-xs-3' id='detail-rank'>
+                    <a href=''>Detail</a>
+                </div>
+            </div>
+            <div class="space10"></div>
+            <div class='row-item row'>
+                <div class='col-lg-12 col-sm-12 col-md-12 col-xs-12'>
+                    <table class='table table-striped table-bordered table-hover'>
+                        <thead>
+                            <tr align='center'>
+                                <th class='colum'>@lang('teams.index_table_column')</th>
+                                <th class='colum'>@lang('teams.name_table_column')</th>
+                            </tr>
+                        </thead>
+                        <tbody id="team-list">
+                            @foreach ($teams as $key => $team)
+                                <tr class='odd gradeX' align='center'>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h1 id='header-readest-news' class='page-header'>      
                 @lang('user.readest_news')
             </h1>
             @foreach ($readestNews as $key => $element)
@@ -272,40 +309,6 @@
                     </div>
                 @endif
             @endforeach
-
-            <h1 id='header-readest-news' class='page-header'>      
-                @lang('teams.teams_list_header')
-            </h1>
-
-            <div class='row-item row'>
-                <div class='col-lg-6 col-sm-6 col-md-6 col-xs-6'>
-                    {!! Form::select('leagues', $leagues, null, ['id' => 'leagues']) !!}
-                </div>
-                <div class='col-lg-6 col-sm-6 col-md-6 col-xs-6'>
-                    {!! Form::select('league_seasons', $league_seasons, null, ['id' => 'league_seasons']) !!}
-                </div>
-            </div>
-            <div class="space10"></div>
-            <div class='row-item row'>
-                <div class='col-lg-12 col-sm-12 col-md-12 col-xs-12'>
-                    <table class='table table-striped table-bordered table-hover'>
-                        <thead>
-                            <tr align='center'>
-                                <th class='colum'>@lang('teams.index_table_column')</th>
-                                <th class='colum'>@lang('teams.name_table_column')</th>
-                            </tr>
-                        </thead>
-                        <tbody id="team-list">
-                            @foreach ($teams as $key => $team)
-                                <tr class='odd gradeX' align='center'>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td><a href="{{ route('team.show', $team->id) }}">{{ $team->name }}</a></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
     </div>
     <script type='text/javascript' src="{{ asset('user_asset/customs/js/home.js') }}"></script>

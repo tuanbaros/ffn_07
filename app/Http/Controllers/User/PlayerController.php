@@ -11,6 +11,7 @@ use App\Country;
 use App\Team;
 use App\Player;
 use App\News;
+use App\League;
 use Auth;
 
 class PlayerController extends Controller
@@ -18,15 +19,17 @@ class PlayerController extends Controller
     public function show($id)
     {
         $categories = Category::all();
-        $country = Country::all();
+        $countries = Country::all();
         $player = Player::findOrFail($id);
+        $leagues = League::all();
         $otherNews = News::getNews(config('view.count_other_news'), 'created_at', 'desc')->get();
         $readestNews = News::getNews(config('view.count_readest_news'), 'view_number')->get();
         return view('user.player.player-info')->with([
             'categories' => $categories,
-            'country' => $country,
+            'countries' => $countries,
             'player' => $player,
             'ortherNews' => $otherNews,
+            'leaguesList' => $leagues,
             'readestNews' => $readestNews,
         ]);
     }

@@ -50,7 +50,7 @@ class LeagueSeason extends BaseModel
 
     public function matchs()
     {
-    	return $this->hasMany(Match::class);
+    	return $this->hasMany(Match::class, 'league_seasons_id', 'id');
     }
 
     public function playerAwards()

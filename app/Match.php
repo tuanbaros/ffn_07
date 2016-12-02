@@ -49,6 +49,11 @@ class Match extends BaseModel
         return $query->where('league_season_id', $id);
     }
 
+    public function scopeMatchNotPlay($query, $id)
+    {
+        return $query->where(['league_season_id' => $id, 'status' => 0]);
+    }
+
     public function scopeFindMatchbyTeam($query, $leagueSeasonId, $teamId, $status)
     {
         return $query->where([

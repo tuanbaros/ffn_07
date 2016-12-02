@@ -65,6 +65,7 @@ var home = function() {
                     '<td><a href="/team/' + data[i].id + '">' + data[i].name + '</a></td></tr>'
             }
             $('#team-list').html(result);
+            $('#detail-rank').html('<a href="/showCharts/' + data[0].id + '">Detail</a>');
         });
     }
 }

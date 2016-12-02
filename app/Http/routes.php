@@ -100,7 +100,10 @@ Route::group(['namespace' => 'User'], function() {
     Route::post('/home/searchTeam', 'HomeController@searchTeam');
     Route::resource('/team', 'TeamController');
     Route::resource('/player', 'PlayerController');
+    Route::resource('/match', 'MatchController');
     Route::get('/matchInDay', 'MatchController@matchInDay');
+    Route::get('/showMatch/{id}', ['as' => 'showMatch', 'uses' => 'HomeController@showMatch']);
+    Route::get('/showCharts/{id}', ['as' => 'showCharts', 'uses' => 'HomeController@showCharts']);
 });
 
 Route::get('users/activation/{id}/{token}', [

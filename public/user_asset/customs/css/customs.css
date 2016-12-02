@@ -233,7 +233,7 @@ a:hover {
     margin-top: 0px !important; 
 }
 
-.title-player-info, .title-team-info {
+.title-player-info, .title-team-info, .title-match-info {
     font-weight: bold;
     font-family: fantasy;
     margin-top: 0px !important;
